@@ -8,8 +8,9 @@ services:
     startCommand: cd server && npm run start
     rootDir: server
 
-staticSites:
-  - name: thirdparty-frontend
-    buildCommand: npm install && npm run build
-    publishPath: dist
-    rootDir: client
+  - type: web
+    name: thirdparty-frontend
+    env: static
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: client/dist
