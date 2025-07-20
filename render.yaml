@@ -1,0 +1,15 @@
+
+services:
+  - type: web
+    name: thirdparty-backend
+    env: node
+    plan: free
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm run start
+    rootDir: server
+
+  - type: static
+    name: thirdparty-frontend
+    buildCommand: cd client && npm install && npm run build
+    publishPath: client/dist
+    rootDir: client
