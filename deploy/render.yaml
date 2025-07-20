@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: thirdparty-platform
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: cd dist && npm ci --omit=dev && node server/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+    disk:
+      name: thirdparty-data
+      mountPath: /app/data
+      sizeGB: 1
